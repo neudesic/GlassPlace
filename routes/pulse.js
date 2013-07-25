@@ -78,7 +78,7 @@ module.exports = function (config) {
         {
             console.log("guiinfo");
             console.log(glazeUserInfo);
-            var oauth2 = getOauthClient(glazeUserInfo.credentials);
+            var oauth2 = getOauthClient(glazeUserInfo.session.credentials);
             console.log("getting timeline item");
             var itemId = req.body.itemId;
             client.mirror.timeline.get({id: itemId})
