@@ -99,6 +99,7 @@ module.exports = function (config) {
                             console.log("got attachment" + attachmentUrl);
                             var form = new FormData();
                             var options = {
+
                                 "type":"core:status",
                                 "text":"ThroughGlassPlace"
                             };
@@ -107,7 +108,7 @@ module.exports = function (config) {
                                 form.append(x, options[x]);
                             });
                             form.append('file', body);
-                            form.submit("https://www.groupplace.com/api/graph/collection/11835/post", function (err, res) {
+                            form.submit("https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode, function (err, res) {
                                 console.log("ERR:" + err);
                                 console.log(res);
                             });
