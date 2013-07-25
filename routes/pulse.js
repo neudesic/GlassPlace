@@ -156,6 +156,8 @@ module.exports = function (config) {
                     }
                 } else {
                     kaiseki.createObject("GlassPlaceUsers", req.body, function (err, res, body, success) {
+                        console.log("The object id:");
+                        console.log(body.objectId);
 
                         initializeMirror(oauth2, body.objectId);
                     });
