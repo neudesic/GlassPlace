@@ -89,6 +89,7 @@ module.exports = function (config) {
                 .execute(function (err, result) {
                     ret.err = err;
                     ret.ok = result;
+                    ret.session = req.session;
                     console.log(req.body.code + " is the code");
 
                     res.send(ret);

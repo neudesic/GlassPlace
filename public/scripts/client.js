@@ -59,7 +59,8 @@ console.log("the code ");
                     url: '/auth',
                     contentType: 'application/json; charset=utf-8',
                     data:JSON.stringify({
-                        'gpCode': readCookie("accessToken")
+                        'gpCode': readCookie("accessToken"),
+                        'session': result.session
                     }),
                     processData:false
                 });
