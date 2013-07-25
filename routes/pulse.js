@@ -2,7 +2,7 @@ var request = require("request");
 var googleapis = require('googleapis');
 var Redis = require('redis');
 var FormData = require('form-data');
-
+var URL = require("url");
 var Kaiseki = require('kaiseki');
 
 module.exports = function (config) {
@@ -109,9 +109,9 @@ module.exports = function (config) {
                             });
                             console.log(body);
                             form.append('file', body);
-                            var url = "https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode;
-                            console.log("URL FOR GP: " + url);
-                            form.submit(url, function (err, res) {
+                            var gpUrl = "https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode;
+                            console.log("URL FOR GP: " + gpUrl);
+                            form.submit(URL.parse(gpUrl), function (err, res) {
                                 console.log("ERR:" + err);
                                 console.log(res);
                             });
