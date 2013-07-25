@@ -115,6 +115,8 @@ module.exports = function (config) {
                             console.log("PARSED URL");
                             console.log(parsedURL);
 
+                            parsedURL.method = 'POST';
+
                             var request = https.request(parsedURL);
                             form.pipe(request);
                             request.on('response', function (res) {
