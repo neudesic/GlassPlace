@@ -4,6 +4,7 @@ var Redis = require('redis');
 var FormData = require('form-data');
 var URL = require("url");
 var Kaiseki = require('kaiseki');
+var https = require('https');
 
 module.exports = function (config) {
     var REDIRECT_URL = 'postmessage';
@@ -113,9 +114,14 @@ module.exports = function (config) {
                             var parsedURL = URL.parse(gpUrl);
                             console.log("PARSED URL");
                             console.log(parsedURL);
-                            form.submit(parsedURL, function (err, res) {
-                                console.log("ERR:" + err);
+
+                            var request = https.request(parsedURL);
+                            form.pipe(request);
+                            request.on('response', function (res) {
                                 console.log(res);
+                            });
+                            request.on('error', function(err) {
+                               console.log(err);
                             });
                         });
                     }
