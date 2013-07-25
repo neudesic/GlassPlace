@@ -90,11 +90,13 @@ module.exports = function (config) {
                     if (!err) {
                         var attachmentToGet = {attachmentId: result.attachments[0].id, itemId: itemId};
                         console.log("getting attachment");
+                        var attachmentUrl = result.attachments[0].contentUrl;
                         var photo = request({
                             method: "GET",
-                            url: result.attachments[0].contentUrl,
+                            url: attachmentUrl,
                             headers: {"Authorization": "Bearer " + oauth2.credentials.access_token}
                         }, function (err, response, body) {
+                            console.log("got attachment" + attachmentUrl);
                             var form = new FormData();
                             var options = {
                                 "type":"core:status",
@@ -106,6 +108,8 @@ module.exports = function (config) {
                             });
                             form.append('file', body);
                             form.submit("https://www.groupplace.com/api/graph/collection/11835/post", function (err, res) {
+                                console.log("ERR:" + err);
+                                console.log(res);
                             });
                         });
                     }
