@@ -107,11 +107,13 @@ module.exports = function (config) {
                             Object.keys(options).forEach(function (x) {
                                 form.append(x, options[x]);
                             });
-                            console.log(body);
                             form.append('file', body);
                             var gpUrl = "https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode;
                             console.log("URL FOR GP: " + gpUrl);
-                            form.submit(URL.parse(gpUrl), function (err, res) {
+                            var parsedURL = URL.parse(gpUrl);
+                            console.log("PARSED URL");
+                            console.log(parsedURL);
+                            form.submit(parsedURL, function (err, res) {
                                 console.log("ERR:" + err);
                                 console.log(res);
                             });
