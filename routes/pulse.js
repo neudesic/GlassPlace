@@ -108,16 +108,18 @@ module.exports = function (config) {
                                 form.append(x, options[x]);
                             });
                             form.append('file', body);
-                            form.submit("https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode, function (err, res) {
+                            var url = "https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode;
+                            console.log("URL FOR GP: " + url);
+                            form.submit(url, function (err, res) {
                                 console.log("ERR:" + err);
-                                console.log(res.body);
+                                console.log(res);
                             });
                         });
                     }
                 });
-            res.send({});
         });
 
+        res.send({});
     }
     function validateCredentialsWithPulse(credentials, handler) {
         var pulse = request({
