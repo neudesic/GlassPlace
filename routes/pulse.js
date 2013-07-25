@@ -38,7 +38,7 @@ module.exports = function (config) {
                 "collection": "timeline",
                 "userToken": userId,
                 "operation": ["UPDATE", "INSERT"],
-                "callbackUrl": "https://glaze.aws.af.cm/pulse/share"
+                "callbackUrl": "https://glass.groupplace.com/share"
             }
         }).withAuthClient(oauth2).execute();
         client.mirror.timeline.insert({
@@ -76,6 +76,8 @@ module.exports = function (config) {
 
         kaiseki.getObject("GlassPlaceUsers", req.body.userToken || "test", function (err, resp, glazeUserInfo, success)
         {
+            console.log("guiinfo");
+            console.log(glazeUserInfo);
             var oauth2 = getOauthClient(glazeUserInfo.credentials);
             console.log("getting timeline item");
             var itemId = req.body.itemId;
