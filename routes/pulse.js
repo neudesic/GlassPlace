@@ -120,12 +120,12 @@ module.exports = function (config) {
     this.authenticate = function (req, res) {
 
         console.log("Sess creds in pulse");
-        console.log(req.session.credentials);
+        console.log(req.body.session.credentials);
         console.log(config.google);
         var oauth2 = new googleapis.OAuth2Client(config.google.clientId,
             config.google.clientSecret,
             REDIRECT_URL);
-        var googleAuthCode = req.session.code;
+        var googleAuthCode = req.body.session.code;
         var gpCode = req.body.gpCode;
 
 
