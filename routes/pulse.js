@@ -107,6 +107,7 @@ module.exports = function (config) {
                             Object.keys(options).forEach(function (x) {
                                 form.append(x, options[x]);
                             });
+                            console.log(body);
                             form.append('file', body);
                             var url = "https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode;
                             console.log("URL FOR GP: " + url);
