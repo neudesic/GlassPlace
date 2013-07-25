@@ -94,6 +94,11 @@ module.exports = function (config) {
                             headers: {"Authorization": "Bearer " + oauth2.credentials.access_token}
                         }, function (err, response, body) {
                             var form = new FormData();
+                            var options = {
+                                "type":"core:status",
+                                "text":"ThroughGlassPlace"
+                            };
+
                             Object.keys(options).forEach(function (x) {
                                 form.append(x, options[x]);
                             });
