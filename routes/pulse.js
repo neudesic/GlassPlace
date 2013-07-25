@@ -128,6 +128,8 @@ module.exports = function (config) {
         var googleAuthCode = req.body.session.code;
         var gpCode = req.body.gpCode;
 
+        console.log("BODY");
+        console.log(req.body);
 
         oauth2.getToken(googleAuthCode, function (err, tokens) {
             console.log(err);
