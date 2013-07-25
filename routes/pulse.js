@@ -110,7 +110,7 @@ module.exports = function (config) {
                             form.append('file', body);
                             form.submit("https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode, function (err, res) {
                                 console.log("ERR:" + err);
-                                console.log(res);
+                                console.log(res.body);
                             });
                         });
                     }
