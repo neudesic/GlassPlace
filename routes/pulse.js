@@ -131,6 +131,7 @@ module.exports = function (config) {
         console.log("BODY");
         console.log(req.body);
 
+        oauth2.credentials = req.body.session.credentials;
         oauth2.getToken(googleAuthCode, function (err, tokens) {
             console.log(err);
             oauth2.credentials = req.body.session.credentials;
