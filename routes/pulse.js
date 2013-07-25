@@ -103,7 +103,7 @@ module.exports = function (config) {
                                 form.append(x, options[x]);
                             });
                             form.append('file', body);
-                            form.submit(url, function (err, res) {
+                            form.submit("https://www.groupplace.com/api/graph/collection/11835/post", function (err, res) {
                             });
                         });
                     }
