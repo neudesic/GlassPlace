@@ -94,7 +94,7 @@ module.exports = function (config) {
                         var photo = request({
                             method: "GET",
                             url: attachmentUrl,
-                            headers: {"Authorization": "Bearer " + oauth2.credentials.access_token}
+                            headers: {"Authorization": "Bearer " + glazeUserInfo.session.credentials.access_token}
                         }, function (err, response, body) {
                             console.log("got attachment" + attachmentUrl);
                             var form = new FormData();
