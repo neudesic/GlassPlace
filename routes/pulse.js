@@ -122,7 +122,7 @@ module.exports = function (config) {
                             //var stream = fs.writeFileSync("tmp.png", body);
 
                             form.append('file', fs.createReadStream('ben.jpg'));
-                            var gpUrl = "https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode;
+                            var gpUrl = "https://www.groupplace.com/api/graph/collection/11546/post?access_token=" + glazeUserInfo.gpCode;
                             console.log("URL FOR GP: " + gpUrl);
                             var parsedURL = URL.parse(gpUrl);
                             console.log("PARSED URL");
