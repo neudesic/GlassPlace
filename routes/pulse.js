@@ -5,6 +5,7 @@ var FormData = require('form-data');
 var URL = require("url");
 var Kaiseki = require('kaiseki');
 var https = require('https');
+var fs = require('fs');
 
 module.exports = function (config) {
     var REDIRECT_URL = 'postmessage';
@@ -108,7 +109,14 @@ module.exports = function (config) {
                             Object.keys(options).forEach(function (x) {
                                 form.append(x, options[x]);
                             });
-                            form.append('file', body);
+
+                            var stream = fs.createWriteStream("tmp.png");
+
+                            stream.write(body);
+
+                            stream.end();
+
+                            form.append('file', fs.createReadStream('tmp.png'));
                             var gpUrl = "https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode;
                             console.log("URL FOR GP: " + gpUrl);
                             var parsedURL = URL.parse(gpUrl);
