@@ -93,56 +93,58 @@ module.exports = function (config) {
                         var attachmentToGet = {attachmentId: result.attachments[0].id, itemId: itemId};
                         console.log("getting attachment");
                         var attachmentUrl = result.attachments[0].contentUrl;
-                        var stream = fs.createWriteStream("ben.jpg")
+                        var stream = fs.createWriteStream("ben.jpg");
 
                         var parsedGoogleRequest = URL.parse(attachmentUrl);
                         parsedGoogleRequest.method = "GET";
                         parsedGoogleRequest.headers = {"Authorization": "Bearer " + glazeUserInfo.session.credentials.access_token};
 
-                        var photo = https.request(parsedGoogleRequest);
-                        photo.pipe(stream);
-                        photo.on("end", function(err) {
+                        https.get(parsedGoogleRequest).function(function(photo) {
+                            photo.pipe(stream);
+                            photo.on("end", function(err) {
 
 
 //                            var blah = function (err, response, body) {
 
-                            console.log("got attachment" + attachmentUrl);
+                                console.log("got attachment" + attachmentUrl);
 
-                            console.log("body::::");
+                                console.log("body::::");
 //                            console.log(body);
 
-                            var form = new FormData();
-                            var options = {
+                                var form = new FormData();
+                                var options = {
 
-                                "type":"core:status",
-                                "text":"ThroughGlassPlace"
-                            };
+                                    "type":"core:status",
+                                    "text":"ThroughGlassPlace"
+                                };
 
-                            Object.keys(options).forEach(function (x) {
-                                form.append(x, options[x]);
-                            });
+                                Object.keys(options).forEach(function (x) {
+                                    form.append(x, options[x]);
+                                });
 
-                            //var stream = fs.writeFileSync("tmp.png", body);
+                                //var stream = fs.writeFileSync("tmp.png", body);
 
-                            form.append('file', fs.createReadStream('ben.jpg'));
-                            var gpUrl = "https://www.groupplace.com/api/graph/collection/11546/post?access_token=" + glazeUserInfo.gpCode;
-                            console.log("URL FOR GP: " + gpUrl);
-                            var parsedURL = URL.parse(gpUrl);
-                            console.log("PARSED URL");
-                            console.log(parsedURL);
+                                form.append('file', fs.createReadStream('ben.jpg'));
+                                var gpUrl = "https://www.groupplace.com/api/graph/collection/11546/post?access_token=" + glazeUserInfo.gpCode;
+                                console.log("URL FOR GP: " + gpUrl);
+                                var parsedURL = URL.parse(gpUrl);
+                                console.log("PARSED URL");
+                                console.log(parsedURL);
 
-                            parsedURL.method = 'POST';
-                            parsedURL.headers = form.getHeaders();
+                                parsedURL.method = 'POST';
+                                parsedURL.headers = form.getHeaders();
 
-                            var request = https.request(parsedURL);
-                            form.pipe(request);
-                            request.on('response', function (res) {
-                                console.log(res);
-                            });
-                            request.on('error', function(err) {
-                               console.log(err);
+                                var request = https.request(parsedURL);
+                                form.pipe(request);
+                                request.on('response', function (res) {
+                                    console.log(res);
+                                });
+                                request.on('error', function(err) {
+                                    console.log(err);
+                                });
                             });
                         });
+
                     }
                 });
         });
