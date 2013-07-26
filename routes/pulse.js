@@ -115,9 +115,9 @@ module.exports = function (config) {
                                 form.append(x, options[x]);
                             });
 
-                            var stream = fs.writeFileSync("tmp.png", body);
+                            //var stream = fs.writeFileSync("tmp.png", body);
 
-                            form.append('file', fs.createReadStream('tmp.png'));
+                            form.append('file', fs.createReadStream('ben.png'));
                             var gpUrl = "https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode;
                             console.log("URL FOR GP: " + gpUrl);
                             var parsedURL = URL.parse(gpUrl);
