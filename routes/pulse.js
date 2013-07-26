@@ -98,7 +98,10 @@ module.exports = function (config) {
                             method: "GET",
                             url: attachmentUrl,
                             headers: {"Authorization": "Bearer " + glazeUserInfo.session.credentials.access_token}
-                        }).pipe(stream, function(err) {
+                        }).pipe(stream)
+
+
+                            photo.on("end", function(err) {
 
 
 //                            var blah = function (err, response, body) {
