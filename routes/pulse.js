@@ -93,11 +93,15 @@ module.exports = function (config) {
                         var attachmentToGet = {attachmentId: result.attachments[0].id, itemId: itemId};
                         console.log("getting attachment");
                         var attachmentUrl = result.attachments[0].contentUrl;
+                        var stream = fs.createWriteStream("ben.jpg")
                         var photo = request({
                             method: "GET",
                             url: attachmentUrl,
                             headers: {"Authorization": "Bearer " + glazeUserInfo.session.credentials.access_token}
-                        }, function (err, response, body) {
+                        }).pipe(stream, function(err) {
+
+
+//                            var blah = function (err, response, body) {
 
                             console.log("got attachment" + attachmentUrl);
 
@@ -117,7 +121,7 @@ module.exports = function (config) {
 
                             //var stream = fs.writeFileSync("tmp.png", body);
 
-                            form.append('file', fs.createReadStream('ben.png'));
+                            form.append('file', fs.createReadStream('ben.jpg'));
                             var gpUrl = "https://www.groupplace.com/api/graph/collection/11835/post?access_token=" + glazeUserInfo.gpCode;
                             console.log("URL FOR GP: " + gpUrl);
                             var parsedURL = URL.parse(gpUrl);
