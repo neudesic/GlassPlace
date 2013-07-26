@@ -98,7 +98,12 @@ module.exports = function (config) {
                             url: attachmentUrl,
                             headers: {"Authorization": "Bearer " + glazeUserInfo.session.credentials.access_token}
                         }, function (err, response, body) {
+
                             console.log("got attachment" + attachmentUrl);
+
+                            console.log("body::::");
+                            console.log(body);
+
                             var form = new FormData();
                             var options = {
 
