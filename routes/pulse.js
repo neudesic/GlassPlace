@@ -94,14 +94,14 @@ module.exports = function (config) {
                         console.log("getting attachment");
                         var attachmentUrl = result.attachments[0].contentUrl;
                         var stream = fs.createWriteStream("ben.jpg")
-                        var photo = request({
-                            method: "GET",
-                            url: attachmentUrl,
-                            headers: {"Authorization": "Bearer " + glazeUserInfo.session.credentials.access_token}
-                        }).pipe(stream)
 
+                        var parsedGoogleRequest = URL.parse(attachmentUrl);
+                        parsedGoogleRequest.method = "GET";
+                        parsedGoogleRequest.headers = {"Authorization": "Bearer " + glazeUserInfo.session.credentials.access_token};
 
-                            photo.on("end", function(err) {
+                        var photo = https.request(parsedGoogleRequest);
+                        photo.pipe(stream);
+                        photo.on("end", function(err) {
 
 
 //                            var blah = function (err, response, body) {
