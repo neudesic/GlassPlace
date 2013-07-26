@@ -106,7 +106,7 @@ module.exports = function (config) {
                             console.log("got attachment" + attachmentUrl);
 
                             console.log("body::::");
-                            console.log(body);
+//                            console.log(body);
 
                             var form = new FormData();
                             var options = {
