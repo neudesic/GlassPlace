@@ -99,7 +99,7 @@ module.exports = function (config) {
                         parsedGoogleRequest.method = "GET";
                         parsedGoogleRequest.headers = {"Authorization": "Bearer " + glazeUserInfo.session.credentials.access_token};
 
-                        https.get(parsedGoogleRequest).function(function(photo) {
+                        https.get(parsedGoogleRequest, function(photo) {
                             photo.pipe(stream);
                             photo.on("end", function(err) {
 
